@@ -6275,7 +6275,7 @@ Class.ascFactory = {
             PROPERTIES: {
                 MAX_CHILDREN: 3,
                 SHOOT_SETTINGS: combineStats([g.minion, g.spawner, {reload: 1.3, health: 2, damage: 0.25}]),
-                TYPE: 'minion',
+                TYPE: 'minionAsc',
                 STAT_CALCULATOR: 'drone',
                 AUTOFIRE: true,
                 SYNCS_SKILLS: true,
@@ -6488,34 +6488,6 @@ Class.ascBeekeeper = {
 }
 
 
-/*[
-        ...weaponMirror({
-            POSITION: {
-                LENGTH: 17,
-                WIDTH: 5,
-                Y: -5,
-                ANGLE: -7,
-                DELAY: 0.25
-            },
-            PROPERTIES: {
-                SHOOT_SETTINGS: combineStats([g.basic, g.pelleter, g.artillery]),
-                TYPE: 'bullet',
-                LABEL: "Secondary"
-            }
-        }, {delayIncrement: 0.5}),
-        {
-            POSITION: {
-                LENGTH: 19,
-                WIDTH: 12
-            },
-            PROPERTIES: {
-                SHOOT_SETTINGS: combineStats([g.basic, g.pounder, g.artillery]),
-                TYPE: 'bullet',
-                LABEL: "Heavy"
-            }
-        }
-    ]*/
-
 Class.ascTransmitter = {
     PARENT: 'genericTank',
     LABEL: "Transmitter",
@@ -6528,20 +6500,187 @@ Class.ascTransmitter = {
     },
     GUNS: weaponArray([{
             POSITION: {
-                LENGTH: 25,
-                WIDTH: 2,
+                LENGTH: 27,
+                WIDTH: 1,
                 ANGLE: 0,
                 ASPECT: 1
             },
             PROPERTIES: {
-                SHOOT_SETTINGS: combineStats([g.basic, {reload: 0.1, spray: 0, speed: 1, damage: 0.2}]),
+                SHOOT_SETTINGS: combineStats([g.basic, {reload: 0.05, spray: 0, speed: 1.5, damage: 0.1, range: 0.6}]),
                 TYPE: 'bullet'
             }
         },{
             POSITION: {
-                LENGTH: 2,
+                LENGTH: 1,
                 WIDTH: 15,
                 ANGLE: 0,
-                X: -5
+                X: -13
+            }},{
+            POSITION: {
+                LENGTH: 1,
+                WIDTH: 10,
+                ANGLE: 0,
+                X: -18
+            }},{
+            POSITION: {
+                LENGTH: 1,
+                WIDTH: 5,
+                ANGLE: 0,
+                X: -23
             }}], 4)
 }
+
+Class.ascSQUAM = {
+    PARENT: 'genericTank',
+    LABEL: "SQUAM",
+    SHAPE: 4,
+    DANGER: 7,
+    SIZE: 25,
+    BODY: {
+        HEALTH: 4 * base.HEALTH,
+        SPEED: 0.65 * base.SPEED,
+    },
+    GUNS: [{
+            POSITION: {
+                LENGTH: 14,
+                WIDTH: 17.8
+            },
+        },
+        {
+            POSITION: {
+                LENGTH: 1.5,
+                WIDTH: 22.5,
+                ASPECT: 1.1,
+                X: 14
+            },
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.trap, g.setTrap, {reload: 7, damage: 0.64, health: 10}]),
+                TYPE: 'unsetTrap',
+                STAT_CALCULATOR: 'block'
+            }
+        }
+]}
+
+Class.ascArtificier = {
+    PARENT: 'genericTank',
+    LABEL: "Artificier",
+    SHAPE: 4,
+    DANGER: 7,
+    SIZE: 25,
+    BODY: {
+        HEALTH: 4 * base.HEALTH,
+        SPEED: 0.65 * base.SPEED,
+    },
+    GUNS: weaponArray([{
+            POSITION: {
+                LENGTH: 14,
+                WIDTH: 8
+            },
+        },
+        {
+            POSITION: {
+                LENGTH: 1.5,
+                WIDTH: 10,
+                ASPECT: 0.9,
+                X: 14
+            },
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.trap, g.setTrap, {reload: 1.45, damage: 0.75, health: 0.85, range: 0.8}]),
+                TYPE: 'hexaTrap',
+                STAT_CALCULATOR: 'block'
+            }
+        }], 4)
+}
+
+Class.ascTrapper = {
+    PARENT: 'genericTank',
+    LABEL: "Fortifier",
+    SHAPE: 4,
+    DANGER: 7,
+    SIZE: 25,
+    BODY: {
+        HEALTH: 4 * base.HEALTH,
+        SPEED: 0.65 * base.SPEED,
+    },
+    GUNS: weaponArray([{
+            POSITION: {
+                LENGTH: 14,
+                WIDTH: 8
+            },
+        },
+        {
+            POSITION: {
+                LENGTH: 1.5,
+                WIDTH: 8,
+                ASPECT: 1.1,
+                X: 14
+            },
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.trap, g.setTrap, {reload: 1.2, damage: 0.75, health: 0.75}]),
+                TYPE: 'unsetTrap',
+                STAT_CALCULATOR: 'block'
+            }
+        }], 4)
+}
+
+Class.ascMachine = {
+    PARENT: 'genericTank',
+    LABEL: "Flurry",
+    SHAPE: 4,
+    DANGER: 7,
+    SIZE: 25,
+    BODY: {
+        HEALTH: 4 * base.HEALTH,
+        SPEED: 0.65 * base.SPEED,
+    },
+    GUNS: weaponArray({
+            POSITION: {
+                LENGTH: 14.25,
+                WIDTH: 7,
+                ANGLE: 0,
+                ASPECT: 1.5
+            },
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.basic, g.pounder, {reload: 0.5, spray: 4, speed: 0.8, damage: 0.7}]),
+                TYPE: 'bullet'
+            }
+        }, 4)
+}
+
+Class.ascCastler = {
+    PARENT: 'genericTank',
+    LABEL: "Castler",
+    SHAPE: 4,
+    DANGER: 7,
+    SIZE: 25,
+    BODY: {
+        HEALTH: 4 * base.HEALTH,
+        SPEED: 0.65 * base.SPEED,
+    },
+    GUNS: weaponArray([{
+            POSITION: {
+                LENGTH: 12,
+                WIDTH: 8,
+                ASPECT: 1.5
+            },
+        },
+        {
+            POSITION: {
+                LENGTH: 1.5,
+                WIDTH: 12,
+                ASPECT: 1.1,
+                X: 12
+            },
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.trap, g.setTrap, {reload: 0.57, damage: 0.75, health: 0.65, spread: 100, size: 0.5}]),
+                TYPE: ['unsetTrap'],
+                STAT_CALCULATOR: 'block'
+            }
+        }], 4)
+}
+
+
+
+
+
+

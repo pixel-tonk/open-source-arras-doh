@@ -689,6 +689,7 @@ Class.minion = {
         }
     ]
 }
+Class.minionAsc = {PARENT: "minion", SHAPE: 4}
 Class.tinyMinion = {
     PARENT: "minion",
     LABEL: "Swarm Minion",
@@ -1130,4 +1131,31 @@ Class.superSplitterBullet = {
             },
         },
     ],
+}
+
+Class.hexaTrap = {
+    PARENT: "unsetTrap",
+    LABEL: "Hexa-Trap",
+    SHAPE: -6,
+    MOTION_TYPE: "motor",
+    BODY: {
+        SPEED: 1,
+        DENSITY: 4,
+    },
+    GUNS: weaponArray({
+                POSITION: {
+                    LENGTH: 0,
+                    WIDTH: 4,
+                    ASPECT: 1,
+                    X: 0,
+                    Y: 0,
+                    ANGLE: 0,
+                    DELAY: 1
+                },
+                PROPERTIES: {
+                    SHOOT_SETTINGS: combineStats([g.basic, {reload: 999,range: 0.7, damage: 0.8, health: 0.8}]), // Gun/projectile stats
+                    TYPE: ['bullet', { PERSISTS_AFTER_DEATH: true }], // What the gun shoots, 6)
+                    SHOOT_ON_DEATH: true,
+                    WAIT_TO_CYCLE: true,
+}},6)
 }

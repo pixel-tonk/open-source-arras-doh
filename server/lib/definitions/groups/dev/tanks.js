@@ -66,6 +66,9 @@ Class.developer = {
         'ascArtillery',
         'ascBeekeeper',
         'ascTransmitter',
+        'ascSQUAM',
+        'ascArtificier',
+        'ascCastler'
     ]
 }
 
