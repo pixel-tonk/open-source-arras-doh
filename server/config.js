@@ -5,7 +5,7 @@ module.exports = {
 
     // Client
     main_menu: 'index.html', // Where the main menu is located (in the /public folder).
-    host: 'localhost:3000', // Game server domain. If the host is 'localhost:NUMBER', the NUMBER must be the port setting.
+    host: 'upgraded-disco-3000.github.io', // Game server domain. If the host is 'localhost:NUMBER', the NUMBER must be the port setting.
     port: 3000, // Which port to run the web server on.
 
     // Server
@@ -19,116 +19,67 @@ module.exports = {
             // The above is required if your VM (the machine that hosts the website stuff) doesn't support multi-ports and forces everything through the main server.
             // This also overrides the below host and port settings to be identical to the main server's host/port (by default, 3000).
 
-            host: 'localhost:3001', // Server host location.
+            host: 'upgraded-disco-jjxjjpvrgqr72pwwx-3001.app.github.dev', // Server host location.
             port: 3001, // The port on the server.
             id: 'la', // (<host>/#<id>)
 
             region: "Local", // The region the server is on.
-            gamemode: ['tdm'], // The selected gamemode.
+            gamemode: ['ffa'], // The selected gamemode.
             player_cap: 80, // Not including bots. Set to 0 to disable.
-
-            featured: false, // Whether the server is featured or not.
-            unlisted: true, // Whether the server shows up in the server list (if its id isn't in the url).
-            private: true, // Whether the server requires a privileged token to join (except through server travel).
-
-            properties: { // This overrides settings in the config.js file, assuming the selected gamemode doesn't also override it.
-                teams: 4,
-                bot_cap: 40
-            }
-        },
-        {
-            share_client_server: false, // Only one server at a time can have this enabled.
-            // The above is required if your VM (the machine that hosts the website stuff) doesn't support multi-ports and forces everything through the main server.
-            // This also overrides the below host and port settings to be identical to the main server's host/port (by default, 3000).
-
-            host: 'localhost:3002', // Server host location.
-            port: 3002, // The port on the server.
-            id: 'lb', // (<host>/#<id>)
-
-            region: "Local", // The region the server is on.
-            gamemode: ['retrograde', 'ffa'], // The selected gamemode.
-            player_cap: 80, // Not including bots. Set to 0 to disable.
-
-            featured: false, // Whether the server is featured or not.
-            unlisted: true, // Whether the server shows up in the server list (if its id isn't in the url).
-            private: true, // Whether the server requires a privileged token to join (except through server travel).
-
-            properties: { // This overrides settings in the config.js file, assuming the selected gamemode doesn't also override it.
-                teams: 4,
-                bot_cap: 16,
-                server_travel_properties: {
-                    loop_interval: 30_000, // how often the portal loop executes in seconds
-                    portals: 3, // amount of portals to spawn
-                },
-                daily_tank: {
-                    tank: 'whirlwind',
-                    tier: 3,
-                    ads: false,
-                    ad_sources: [
-                        {
-                            file: 'testadvideo.mp4',
-                            use_regular_ad_size: true
-                        },
-                        {
-                            file: 'testadimage.png',
-                            use_regular_ad_size: true
-                        }
-                    ]
-                },
-                server_travel: [
-                    {
-                        ip: 'localhost:3003', // destination server host, don't add "https://" or any slashes to it
-                        portal_properties: {
-                            spawn_chance: 3, // chance for a portal to spawn somewhere in the map each loop iteration (higher = lower chances, lower = higher chance)
-                            color: 'red', // portal color
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            share_client_server: false, // Only one server at a time can have this enabled.
-            // The above is required if your VM (the machine that hosts the website stuff) doesn't support multi-ports and forces everything through the main server.
-            // This also overrides the below host and port settings to be identical to the main server's host/port (by default, 3000).
-
-            host: 'localhost:3003', // Server host location.
-            port: 3003, // The port on the server.
-            id: 'lx', // (<host>/#<id>)
-
-            region: "Local", // The region the server is on.
-            gamemode: ['nexus'], // The selected gamemode.
-            player_cap: 80, // Not including bots. Set to 0 to disable.
-
-            featured: false, // Whether the server is featured or not.
-            unlisted: true, // Whether the server shows up in the server list (if its id isn't in the url).
-            private: true, // Whether the server requires a privileged token to join (except through server travel).
-
-            properties: { // This overrides settings in the config.js file, assuming the selected gamemode doesn't also override it.
-                teams: 4,
-                bot_cap: 0
-                //allow_server_travel: true
-            }
-        },
-        {
-            share_client_server: false, // Only one server at a time can have this enabled.
-            // The above is required if your VM (the machine that hosts the website stuff) doesn't support multi-ports and forces everything through the main server.
-            // This also overrides the below host and port settings to be identical to the main server's host/port (by default, 3000).
-
-            host: 'localhost:3099', // Server host location.
-            port: 3099, // The port on the server.
-            id: 'lz', // (<host>/#<id>)
-
-            region: "Local", // The region the server is on.
-            gamemode: ['sandbox'], // The selected gamemode.
-            player_cap: 16, // Not including bots. Set to 0 to disable.
 
             featured: false, // Whether the server is featured or not.
             unlisted: false, // Whether the server shows up in the server list (if its id isn't in the url).
             private: false, // Whether the server requires a privileged token to join (except through server travel).
 
             properties: { // This overrides settings in the config.js file, assuming the selected gamemode doesn't also override it.
-                //teams: 4,
-                //bot_cap: 0
+                bot_cap: 30,
+                server_travel_properties: {
+                loop_interval: 10, // how often the portal loop executes in seconds
+                portals: 1, // amount of portals to spawn
+                },
+            server_travel: [
+                {
+                 ip: 'upgraded-disco-jjxjjpvrgqr72pwwx-3002.app.github.dev', // destination server host, don't add "https://" or any slashes to it
+                portal_properties: {
+                spawn_chance: 1, // chance for a portal to spawn somewhere in the map each loop iteration (higher = lower chances, lower = higher chance)
+                color: 'white', // portal color
+        }
+    }
+]
+            }
+        },
+        {
+            share_client_server: false, // Only one server at a time can have this enabled.
+            // The above is required if your VM (the machine that hosts the website stuff) doesn't support multi-ports and forces everything through the main server.
+            // This also overrides the below host and port settings to be identical to the main server's host/port (by default, 3000).
+
+            host: 'upgraded-disco-jjxjjpvrgqr72pwwx-3002.app.github.dev', // Server host location.
+            port: 3002, // The port on the server.
+            id: 'xx', // (<host>/#<id>)
+
+            region: "Local", // The region the server is on.
+            gamemode: ['sanc'], // The selected gamemode.
+            player_cap: 80, // Not including bots. Set to 0 to disable.
+
+            featured: false, // Whether the server is featured or not.
+            unlisted: true, // Whether the server shows up in the server list (if its id isn't in the url).
+            private: true, // Whether the server requires a privileged token to join (except through server travel).
+
+            properties: { // This overrides settings in the config.js file, assuming the selected gamemode doesn't also override it.
+                bot_cap: 0,
+                server_travel_properties: {
+                loop_interval: 10, // how often the portal loop executes in seconds
+                portals: 3, // amount of portals to spawn
+                },
+            server_travel: [
+                {
+                 ip: 'upgraded-disco-jjxjjpvrgqr72pwwx-3001.app.github.dev', // destination server host, don't add "https://" or any slashes to it
+                portal_properties: {
+                spawn_chance: 3, // chance for a portal to spawn somewhere in the map each loop iteration (higher = lower chances, lower = higher chance)
+                color: 'red', // portal color
+        }
+    }
+]
             }
         },
     ],
@@ -137,8 +88,8 @@ module.exports = {
     allow_ACAO: false, // Access-Control-Allow-Origin, allows any server/client to access data from the WebServer.
 
     // Map
-    map_tile_width: 420,
-    map_tile_height: 420,
+    map_tile_width: 520,
+    map_tile_height: 520,
 
     // The message that appears once a player spawns.
     spawn_message: "You have spawned! Welcome to the game.\n"
@@ -176,7 +127,7 @@ module.exports = {
         return 0;
     },
 
-    level_cap: 45, // Maximum normally achievable level.
+    level_cap: 60, // Maximum normally achievable level.
     level_cap_cheat: 45, // Maximum level via the level-up key and auto-level-up.
 
     skill_cap: 9, // Default skill caps.
@@ -192,7 +143,7 @@ module.exports = {
     bot_name_prefix: "[AI] ", // This is prefixed before the bot's randomly chosen name.
 
     // The class that players and bots spawn as.
-    spawn_class: 'basic',
+    spawn_class: ['basic'],
 
     // How every entity regenerates their health.
     regenerate_tick: 100,
@@ -313,7 +264,7 @@ module.exports = {
 
     // Fun
     brain_damage: false, // Disabled by default for epilepsy concerns. Violently shakes your camera and tank if you name yourself 'Brain Damage'.
-    random_body_colors: false,
+    random_body_colors: true,
 
     // These are the default values for gamemode related things.
     // If you want to change them, copy the values you want to change to the server's properties.
