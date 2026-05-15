@@ -55,6 +55,17 @@ Class.developer = {
         'menu_addons',
         'menu_testing',
         'eggGen',
+        'asc',
+        'ascTrapper',
+        'ascMachine',
+        'ascFactory',
+        'ascSniper',
+        'ascOverlord',
+        'ascOvercheeser',
+        'ascNecromancer',
+        'ascArtillery',
+        'ascBeekeeper',
+        'ascTransmitter',
     ]
 }
 

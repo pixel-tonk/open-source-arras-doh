@@ -253,6 +253,20 @@ exports.makeFlank = (type, count, name = -1, options = {}) => {
     output.HAS_NO_RECOIL = options.noRecoil ??= false
     return output
 }
+exports.makeFlankGunOnly = (type, count, name = -1, options = {}) => {
+    type = ensureIsClass(type)
+    let output = exports.dereference(type).GUNS
+    let extraStats = options.extraStats ??= []
+    for (let gun of output) {
+        if (gun.PROPERTIES) {
+            if (gun.PROPERTIES.SHOOT_SETTINGS) {
+                gun.PROPERTIES.SHOOT_SETTINGS = exports.combineStats([gun.PROPERTIES.SHOOT_SETTINGS, ...extraStats])
+            }
+        }
+    }
+    output = exports.weaponArray(output, count ??= 3, {delayIncrement: options.delayIncrement ?? 0, delayOverflow: options.delayOverflow ?? false, startAngle: options.startAngle ?? 0})
+    return output
+}
 exports.makeGuard = (type, name = -1, options = {}) => {
     type = ensureIsClass(type)
     let output = exports.dereference(type)

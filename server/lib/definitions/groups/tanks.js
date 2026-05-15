@@ -1,4 +1,4 @@
-const {combineStats, deleteUpgrades, makeAuto, makeAutoArray, makeBird, makeDrive, makeFlank, makeGuard, makeOver, makeRadialAuto, makeSnake, makeGunner, makeWhirlwind, weaponArray, weaponMirror, weaponStack} = require('../facilitators.js')
+const {combineStats, deleteUpgrades, makeAuto, makeAutoArray, makeBird, makeDrive, makeFlank, makeGuard, makeOver, makeRadialAuto, makeSnake, makeGunner, makeWhirlwind, weaponArray, weaponMirror, weaponStack, makeFlankGunOnly} = require('../facilitators.js')
 const {base, dfltskl, smshskl, statnames} = require('../constants.js')
 const g = require('../gunvals.js')
 const preset = require('../presets.js')
@@ -6166,4 +6166,382 @@ if (Config.siege) {
     Class.basic.UPGRADES_TIER_2 = ['healer']
     deleteUpgrades('director', 2, ['underseer'])
     deleteUpgrades('whirlwind', 3, ['prophet'])
+}
+//ascending time
+
+Class.asc = {
+    PARENT: 'genericTank',
+    LABEL: "Ascendant",
+    SHAPE: 4,
+    DANGER: 7,
+    SIZE: 25,
+    BODY: {
+        HEALTH: 4 * base.HEALTH,
+        SPEED: 0.5 * base.SPEED,
+    },
+    GUNS: weaponArray({
+            POSITION: {
+                LENGTH: 15.25,
+                WIDTH: 7,
+                ANGLE: 0
+            },
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.basic, g.pounder, {reload: 0.8}]),
+                TYPE: 'bullet'
+            }
+        }, 4)
+}
+
+Class.ascTrapper = {
+    PARENT: 'genericTank',
+    LABEL: "Fortifier",
+    SHAPE: 4,
+    DANGER: 7,
+    SIZE: 25,
+    BODY: {
+        HEALTH: 4 * base.HEALTH,
+        SPEED: 0.65 * base.SPEED,
+    },
+    GUNS: weaponArray([{
+            POSITION: {
+                LENGTH: 14,
+                WIDTH: 8
+            },
+        },
+        {
+            POSITION: {
+                LENGTH: 1.5,
+                WIDTH: 8,
+                ASPECT: 1.1,
+                X: 14
+            },
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.trap, g.setTrap, {reload: 1.2, damage: 0.75, health: 0.75}]),
+                TYPE: 'unsetTrap',
+                STAT_CALCULATOR: 'block'
+            }
+        }], 4)
+}
+
+Class.ascMachine = {
+    PARENT: 'genericTank',
+    LABEL: "Flurry",
+    SHAPE: 4,
+    DANGER: 7,
+    SIZE: 25,
+    BODY: {
+        HEALTH: 4 * base.HEALTH,
+        SPEED: 0.65 * base.SPEED,
+    },
+    GUNS: weaponArray({
+            POSITION: {
+                LENGTH: 14.25,
+                WIDTH: 7,
+                ANGLE: 0,
+                ASPECT: 1.5
+            },
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.basic, g.pounder, {reload: 0.5, spray: 4, speed: 0.8, damage: 0.7}]),
+                TYPE: 'bullet'
+            }
+        }, 4)
+}
+
+Class.ascFactory = {
+    PARENT: 'genericTank',
+    LABEL: "Productionist",
+    SHAPE: 4,
+    DANGER: 7,
+    SIZE: 25,
+    BODY: {
+        HEALTH: 4 * base.HEALTH,
+        SPEED: 0.65 * base.SPEED,
+        FOV: 1.2 * base.FOV
+    },
+    GUNS: weaponArray([
+        {
+            POSITION: {
+                LENGTH: 3,
+                WIDTH: 6.5,
+                X: 8.5
+            }
+        },
+        {
+            POSITION: {
+                LENGTH: 1,
+                WIDTH: 8,
+                X: 12.5
+            },
+            PROPERTIES: {
+                MAX_CHILDREN: 3,
+                SHOOT_SETTINGS: combineStats([g.minion, g.spawner, {reload: 1.3, health: 2, damage: 0.25}]),
+                TYPE: 'minion',
+                STAT_CALCULATOR: 'drone',
+                AUTOFIRE: true,
+                SYNCS_SKILLS: true,
+            },
+        },
+        {
+            POSITION: {
+                LENGTH: 8.5,
+                WIDTH: 8
+            }
+        }
+    ], 4)
+}
+
+Class.ascSniper = {
+    PARENT: 'genericTank',
+    LABEL: "Sharpshooter",
+    SHAPE: 4,
+    DANGER: 7,
+    SIZE: 25,
+    BODY: {
+        HEALTH: 4 * base.HEALTH,
+        SPEED: 0.65 * base.SPEED,
+        FOV: 1.5 * base.FOV
+    },
+    GUNS: weaponArray({
+            POSITION: {
+                LENGTH: 20.25,
+                WIDTH: 7,
+                ANGLE: 0
+            },
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.basic, g.pounder, g.sniper, {reload: 0.8}]),
+                TYPE: 'bullet'
+            }
+        }, 4)
+}
+
+Class.ascOverlord = {
+    PARENT: 'genericTank',
+    LABEL: "Commander",
+    SHAPE: 4,
+    DANGER: 7,
+    SIZE: 25,
+    MAX_CHILDREN: 12,
+    BODY: {
+        HEALTH: 4 * base.HEALTH,
+        SPEED: 0.65 * base.SPEED,
+        FOV: 1.2 * base.FOV
+    },
+    GUNS: weaponArray([{
+        POSITION: {
+            LENGTH: 4.5,
+            WIDTH: 8,
+            ASPECT: 1.6,
+            X: 8
+        },
+        PROPERTIES: {
+            SHOOT_SETTINGS: combineStats([g.drone, g.overseer, {damage: 0.94, speed: 0.9, health: 0.94}]),
+            TYPE: 'drone',
+            AUTOFIRE: true,
+            SYNCS_SKILLS: true,
+            STAT_CALCULATOR: 'drone',
+            WAIT_TO_CYCLE: true
+        }
+    }], 4)
+}
+
+Class.ascOvercheeser = {
+    PARENT: 'genericTank',
+    LABEL: "Overcheeser",
+    SHAPE: 4,
+    DANGER: 7,
+    SIZE: 25,
+    MAX_CHILDREN: 6,
+    BODY: {
+        HEALTH: 4 * base.HEALTH,
+        SPEED: 0.65 * base.SPEED,
+        FOV: 1.2 * base.FOV
+    },
+    GUNS: weaponArray([{
+        POSITION: {
+            LENGTH: 4.5,
+            WIDTH: 18,
+            ASPECT: 1.2,
+            X: 8
+        },
+        PROPERTIES: {
+            SHOOT_SETTINGS: combineStats([g.drone, g.overseer, {damage: 0.94, speed: 0.3, health: 4, reload: 3}]),
+            TYPE: 'drone',
+            AUTOFIRE: true,
+            SYNCS_SKILLS: true,
+            STAT_CALCULATOR: 'drone',
+            WAIT_TO_CYCLE: true
+        }
+    }], 4)
+}
+
+Class.ascNecromancer = {
+    PARENT: 'genericTank',
+    LABEL: "Ressurector",
+    SHAPE: 4,
+    DANGER: 7,
+    SIZE: 25,
+    NECRO: [5],
+    TOOLTIP: 'necromancy is broken right now, so this tank is pretty bad',
+    MAX_CHILDREN: 22,
+    BODY: {
+        HEALTH: 4 * base.HEALTH,
+        SPEED: 0.65 * base.SPEED,
+        FOV: 1.2 * base.FOV
+    },
+    GUNS: weaponArray([{
+        POSITION: {
+            LENGTH: 5,
+            WIDTH: 12,
+            ASPECT: 1.1,
+            X: 7.4,
+        },
+        PROPERTIES: {
+            SHOOT_SETTINGS: combineStats([g.drone, g.sunchip, {health: 1.15}]),
+            TYPE: 'megachip',
+            AUTOFIRE: true,
+            SYNCS_SKILLS: true,
+            STAT_CALCULATOR: 'necro',
+            WAIT_TO_CYCLE: true,
+            DELAY_SPAWN: false
+        }
+    }], 4)
+}
+
+Class.ascArtillery = {
+    PARENT: 'genericTank',
+    LABEL: "Cannonadeer",
+    SHAPE: 4,
+    DANGER: 7,
+    SIZE: 25,
+    BODY: {
+        HEALTH: 4 * base.HEALTH,
+        SPEED: 0.65 * base.SPEED,
+    },
+    GUNS: weaponArray([
+        ...weaponMirror({
+            POSITION: {
+                LENGTH: 12,
+                WIDTH: 2.5,
+                Y: -4,
+                ANGLE: -7,
+                DELAY: 0.25
+            },
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.basic, g.pelleter, g.artillery]),
+                TYPE: 'bullet',
+                LABEL: "Secondary"
+            }
+        }, {delayIncrement: 0.5}),
+        {
+            POSITION: {
+                LENGTH: 15,
+                WIDTH: 8
+            },
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.basic, g.pounder, {reload: 0.8, damage: 0.9}]),
+                TYPE: 'bullet',
+                LABEL: "Heavy"
+            }
+        }
+    ], 4)
+}
+Class.ascBeekeeper = {
+    PARENT: 'genericTank',
+    LABEL: "Jazzist",
+    SHAPE: 4,
+    DANGER: 7,
+    SIZE: 25,
+    BODY: {
+        HEALTH: 4 * base.HEALTH,
+        SPEED: 0.65 * base.SPEED,
+    },
+    GUNS: weaponArray([
+        ...weaponMirror({
+            POSITION: {
+                LENGTH: 12.5,
+                WIDTH: 2.9,
+                Y: -4,
+                ANGLE: -7,
+                DELAY: 0.25
+            },
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.swarm, g.bee, {damage: 0.4}]),
+                TYPE: ['bee', { INDEPENDENT: true }],
+                SYNCS_SKILLS: true,
+                STAT_CALCULATOR: 'drone',
+                WAIT_TO_CYCLE: true,
+                LABEL: "Secondary"
+            }
+        }, {delayIncrement: 0.5}),
+        {
+            POSITION: {
+                LENGTH: 15,
+                WIDTH: 8
+            },
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.basic, g.pounder, {reload: 0.8, damage: 0.9}]),
+                TYPE: 'bullet',
+                LABEL: "Heavy"
+            }
+        }
+    ], 4)
+}
+
+
+/*[
+        ...weaponMirror({
+            POSITION: {
+                LENGTH: 17,
+                WIDTH: 5,
+                Y: -5,
+                ANGLE: -7,
+                DELAY: 0.25
+            },
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.basic, g.pelleter, g.artillery]),
+                TYPE: 'bullet',
+                LABEL: "Secondary"
+            }
+        }, {delayIncrement: 0.5}),
+        {
+            POSITION: {
+                LENGTH: 19,
+                WIDTH: 12
+            },
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.basic, g.pounder, g.artillery]),
+                TYPE: 'bullet',
+                LABEL: "Heavy"
+            }
+        }
+    ]*/
+
+Class.ascTransmitter = {
+    PARENT: 'genericTank',
+    LABEL: "Transmitter",
+    SHAPE: 4,
+    DANGER: 7,
+    SIZE: 25,
+    BODY: {
+        HEALTH: 4 * base.HEALTH,
+        SPEED: 0.65 * base.SPEED,
+    },
+    GUNS: weaponArray([{
+            POSITION: {
+                LENGTH: 25,
+                WIDTH: 2,
+                ANGLE: 0,
+                ASPECT: 1
+            },
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.basic, {reload: 0.1, spray: 0, speed: 1, damage: 0.2}]),
+                TYPE: 'bullet'
+            }
+        },{
+            POSITION: {
+                LENGTH: 2,
+                WIDTH: 15,
+                ANGLE: 0,
+                X: -5
+            }}], 4)
 }

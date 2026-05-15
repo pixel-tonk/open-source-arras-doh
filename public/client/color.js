@@ -1,10 +1,11 @@
 var color = {
     // Ingame arras themes
     "normal": {
-        "blue": "#3ca4cb", // Blue Team
-        "green": "#8abc3f", // Green Team
-        "red": "#e03e41", // Red Team
-        "magenta": "#cc669c", // Purple Team
+        "blue": "#002fff", // Blue Team
+        "green": "#44ff15", // Green Team
+        "zomb": "#085a00",
+        "red": "#ff0004", // Red Team
+        "magenta": "#c300ff", // Purple Team
         "mustard": "#c49608", // Yellow Team (todo: make colours that arent from diep theme)
         "tangerine": "#ec7b0f", // Orange Team (todo: make colours that arent from diep theme)
         "brown": "#895918", // Brown Team (todo: make colours that arent from diep theme)
@@ -27,10 +28,10 @@ var color = {
         "guiwhite": "#ffffff", // Text
         "white": "#dbdbdb", // Arena Background
         "grey": "#a7a7af", // Barrels, Bar Backgrounds
-        "black": "#484848", // Borders
+        "black": "#000000", // Borders
         "guiblack": "#000000", // Grid
         "paletteSize": 20,
-        "border": 0.65
+        "border": 1
     },
     "dark": {
         "blue": "#379fc6", // Blue Team

@@ -1,3 +1,5 @@
+const { turret } = require("./lib/definitions/gunvals");
+
 module.exports = {
     // Open Source Arras
     version: 'v2.0.11.3', // The current OSA version. Changing this will likely confuse addons.
@@ -23,42 +25,8 @@ module.exports = {
             port: 3001, // The port on the server.
             id: 'la', // (<host>/#<id>)
 
-            region: "Local", // The region the server is on.
-            gamemode: ['ffa'], // The selected gamemode.
-            player_cap: 80, // Not including bots. Set to 0 to disable.
-
-            featured: false, // Whether the server is featured or not.
-            unlisted: false, // Whether the server shows up in the server list (if its id isn't in the url).
-            private: false, // Whether the server requires a privileged token to join (except through server travel).
-
-            properties: { // This overrides settings in the config.js file, assuming the selected gamemode doesn't also override it.
-                bot_cap: 30,
-                server_travel_properties: {
-                loop_interval: 10, // how often the portal loop executes in seconds
-                portals: 1, // amount of portals to spawn
-                },
-            server_travel: [
-                {
-                 ip: 'upgraded-disco-jjxjjpvrgqr72pwwx-3002.app.github.dev', // destination server host, don't add "https://" or any slashes to it
-                portal_properties: {
-                spawn_chance: 1, // chance for a portal to spawn somewhere in the map each loop iteration (higher = lower chances, lower = higher chance)
-                color: 'white', // portal color
-        }
-    }
-]
-            }
-        },
-        {
-            share_client_server: false, // Only one server at a time can have this enabled.
-            // The above is required if your VM (the machine that hosts the website stuff) doesn't support multi-ports and forces everything through the main server.
-            // This also overrides the below host and port settings to be identical to the main server's host/port (by default, 3000).
-
-            host: 'upgraded-disco-jjxjjpvrgqr72pwwx-3002.app.github.dev', // Server host location.
-            port: 3002, // The port on the server.
-            id: 'xx', // (<host>/#<id>)
-
-            region: "Local", // The region the server is on.
-            gamemode: ['sanc'], // The selected gamemode.
+            region: "Heck", // The region the server is on.
+            gamemode: ['tdm', 'maze', 'outbreak'], // The selected gamemode.
             player_cap: 80, // Not including bots. Set to 0 to disable.
 
             featured: false, // Whether the server is featured or not.
@@ -66,23 +34,11 @@ module.exports = {
             private: true, // Whether the server requires a privileged token to join (except through server travel).
 
             properties: { // This overrides settings in the config.js file, assuming the selected gamemode doesn't also override it.
-                bot_cap: 0,
-                server_travel_properties: {
-                loop_interval: 10, // how often the portal loop executes in seconds
-                portals: 3, // amount of portals to spawn
-                },
-            server_travel: [
-                {
-                 ip: 'upgraded-disco-jjxjjpvrgqr72pwwx-3001.app.github.dev', // destination server host, don't add "https://" or any slashes to it
-                portal_properties: {
-                spawn_chance: 3, // chance for a portal to spawn somewhere in the map each loop iteration (higher = lower chances, lower = higher chance)
-                color: 'red', // portal color
-        }
-    }
-]
+                bot_cap: 30,
             }
         },
     ],
+        
 
     // Web Server
     allow_ACAO: false, // Access-Control-Allow-Origin, allows any server/client to access data from the WebServer.
@@ -127,7 +83,7 @@ module.exports = {
         return 0;
     },
 
-    level_cap: 60, // Maximum normally achievable level.
+    level_cap: 250, // Maximum normally achievable level.
     level_cap_cheat: 45, // Maximum level via the level-up key and auto-level-up.
 
     skill_cap: 9, // Default skill caps.
@@ -136,11 +92,11 @@ module.exports = {
 
     // Bots
     bot_cap: 0, // Maximum number of bots that can be on the server. Set to 0 to disable bots.
-    bot_xp_gain: 60, // How much XP bots get until they reach level_cap.
-    bot_start_level: 45, // How much XP bots will receive when first created.
+    bot_xp_gain: 300, // How much XP bots get until they reach level_cap.
+    bot_start_level: 0, // How much XP bots will receive when first created.
     bot_skill_upgrade_chances: [1, 1, 3, 4, 4, 4, 4, 2, 1, 1], // The chances of a bot upgrading a specific skill when skill upgrades are available.
     bot_class_upgrade_chances: [1, 5, 20, 37, 37], // The chances of a bot upgrading a specific amount of times before it stops upgrading.
-    bot_name_prefix: "[AI] ", // This is prefixed before the bot's randomly chosen name.
+    bot_name_prefix: "[Clank] ", // This is prefixed before the bot's randomly chosen name.
 
     // The class that players and bots spawn as.
     spawn_class: ['basic'],
@@ -264,7 +220,7 @@ module.exports = {
 
     // Fun
     brain_damage: false, // Disabled by default for epilepsy concerns. Violently shakes your camera and tank if you name yourself 'Brain Damage'.
-    random_body_colors: true,
+    random_body_colors: false,
 
     // These are the default values for gamemode related things.
     // If you want to change them, copy the values you want to change to the server's properties.

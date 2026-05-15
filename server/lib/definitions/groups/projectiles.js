@@ -630,7 +630,7 @@ Class.sunchip = {
     DRAW_HEALTH: false,
 }
 Class.eggchip = {PARENT: "sunchip", NECRO: [0], SHAPE: 0}
-
+Class.megachip = {PARENT: "sunchip", NECRO: [5], SHAPE: 5}
 // Mystical Drones
 Class.summonerDrone = {PARENT: "sunchip", NECRO: false}
 Class.sorcererDrone = {...Class.summonerDrone, SHAPE: 0}
