@@ -1,4 +1,4 @@
-const {combineStats, weaponArray, weaponMirror} = require('../facilitators.js')
+const {combineStats, weaponArray, weaponMirror, makeAura} = require('../facilitators.js')
 const g = require('../gunvals.js')
 
 // Bullets
@@ -1158,4 +1158,28 @@ Class.hexaTrap = {
                     SHOOT_ON_DEATH: true,
                     WAIT_TO_CYCLE: true,
 }},6)
+}
+
+Class.inception = {
+    PARENT: "bullet",
+    LABEL: "Inception",
+    INDEPENDENT: true,
+    TURRETS: [
+        {
+            POSITION: [9, 0, 0, 0, 360, 1],
+            TYPE: ["pillboxTurret", {LABEL: "Inception Bullet Turret", GUN_STAT_SCALE: {health: 2.8, pen: 1.8, damage: 3.8}}]
+        },
+    ],
+}
+Class.auraBulletAura = makeAura(1, 2)
+Class.auraBullet = {
+    PARENT: "bullet",
+    LABEL: "Aurora",
+    INDEPENDENT: true,
+    TURRETS: [
+        {
+            POSITION: [9, 0, 0, 0, 360, 1],
+            TYPE: "auraBulletAura"
+        },
+    ],
 }

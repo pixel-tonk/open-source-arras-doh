@@ -6216,7 +6216,7 @@ Class.ascTrapper = {
                 X: 14
             },
             PROPERTIES: {
-                SHOOT_SETTINGS: combineStats([g.trap, g.setTrap, {reload: 1.2, damage: 0.75, health: 0.75}]),
+                SHOOT_SETTINGS: combineStats([g.trap, g.setTrap, {reload: 1.2, damage: 0.75, health: 0.75, range: 0.5}]),
                 TYPE: 'unsetTrap',
                 STAT_CALCULATOR: 'block'
             }
@@ -6506,7 +6506,7 @@ Class.ascTransmitter = {
                 ASPECT: 1
             },
             PROPERTIES: {
-                SHOOT_SETTINGS: combineStats([g.basic, {reload: 0.05, spray: 0, speed: 1.5, damage: 0.1, range: 0.6}]),
+                SHOOT_SETTINGS: combineStats([g.basic, {reload: 0.05, spray: 0, speed: 1.5, health: 0.7, pen: 0.5, damage: 0.05, range: 0.45}]),
                 TYPE: 'bullet'
             }
         },{
@@ -6532,7 +6532,7 @@ Class.ascTransmitter = {
 
 Class.ascSQUAM = {
     PARENT: 'genericTank',
-    LABEL: "SQUAM",
+    LABEL: "Squam",
     SHAPE: 4,
     DANGER: 7,
     SIZE: 25,
@@ -6554,13 +6554,57 @@ Class.ascSQUAM = {
                 X: 14
             },
             PROPERTIES: {
-                SHOOT_SETTINGS: combineStats([g.trap, g.setTrap, {reload: 7, damage: 0.64, health: 10}]),
+                SHOOT_SETTINGS: combineStats([g.trap, g.setTrap, {reload: 7, damage: 0.74, health: 10}]),
                 TYPE: 'unsetTrap',
                 STAT_CALCULATOR: 'block'
             }
         }
 ]}
-
+Class.ascSqultramega = {
+    PARENT: 'genericTank',
+    LABEL: "Squltramega",
+    SHAPE: 4,
+    DANGER: 7,
+    SIZE: 25,
+    BODY: {
+        HEALTH: 4 * base.HEALTH,
+        SPEED: 0.65 * base.SPEED,
+    },
+    GUNS: [{
+            POSITION: {
+                LENGTH: 14,
+                WIDTH: 17.8,
+                ASPECT: 1.5,
+            },
+        },
+        {
+            POSITION: {
+                LENGTH: 1.5,
+                WIDTH: 34.5,
+                ASPECT: 1.1,
+                X: 14
+            },
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.trap, g.setTrap, {reload: 13, damage: 1, health: 30, recoil: 10}]),
+                TYPE: 'unsetTrap',
+                STAT_CALCULATOR: 'block'
+            }
+        }
+],
+        SHAKE: [{
+            CAMERA_SHAKE: {
+                DURATION: 800,
+                AMOUNT: 20,
+            },
+            GUI_SHAKE: {
+                DURATION: 600,
+                AMOUNT: 12,
+            },
+            PUSH: true,
+            APPLY_ON_SHOOT: true,   
+        },
+    ],
+}
 Class.ascArtificier = {
     PARENT: 'genericTank',
     LABEL: "Artificier",
@@ -6585,7 +6629,7 @@ Class.ascArtificier = {
                 X: 14
             },
             PROPERTIES: {
-                SHOOT_SETTINGS: combineStats([g.trap, g.setTrap, {reload: 1.45, damage: 0.75, health: 0.85, range: 0.8}]),
+                SHOOT_SETTINGS: combineStats([g.trap, g.setTrap, {reload: 1.5, damage: 0.75, health: 0.85, range: 0.3}]),
                 TYPE: 'hexaTrap',
                 STAT_CALCULATOR: 'block'
             }
@@ -6616,7 +6660,7 @@ Class.ascTrapper = {
                 X: 14
             },
             PROPERTIES: {
-                SHOOT_SETTINGS: combineStats([g.trap, g.setTrap, {reload: 1.2, damage: 0.75, health: 0.75}]),
+                SHOOT_SETTINGS: combineStats([g.trap, g.setTrap, {reload: 1.2, damage: 0.75, health: 0.75, range: 0.5}]),
                 TYPE: 'unsetTrap',
                 STAT_CALCULATOR: 'block'
             }
@@ -6679,8 +6723,124 @@ Class.ascCastler = {
         }], 4)
 }
 
+Class.ascTesla = {
+    PARENT: 'genericTank',
+    LABEL: "Tesla",
+    SHAPE: 4,
+    DANGER: 7,
+    SIZE: 25,
+    BODY: {
+        HEALTH: 4 * base.HEALTH,
+        SPEED: 0.65 * base.SPEED,
+    },
+    GUNS: weaponArray([{
+            POSITION: {
+                LENGTH: 27,
+                WIDTH: 0.8,
+                ANGLE: 0,
+                ASPECT: 1
+            },
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.basic, {reload: 0.03, spray: 999, speed: 1.5, damage: 0.09, range: 0.1}]),
+                TYPE: 'bullet'
+            }
+        }], 4),
 
+    PROPS: weaponArray([
+            {
+                TYPE: ["circleHat", {COLOR: "lightGrey"}],
+                POSITION: {
+                    SIZE: 9,
+                    X: -27,
+                    LAYER: 1
+                }
+            },
+        ], 4)
+}
 
+Class.ascDestroyer = {
+    PARENT: 'genericTank',
+    LABEL: "Destructor",
+    SHAPE: 4,
+    DANGER: 7,
+    SIZE: 25,
+    BODY: {
+        HEALTH: 4 * base.HEALTH,
+        SPEED: 0.5 * base.SPEED,
+    },
+    GUNS: weaponArray({
+            POSITION: {
+                LENGTH: 14.25,
+                WIDTH: 9,
+                ANGLE: 0
+            },
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.basic, g.pounder, g.destroyer, {reload: 0.9}]),
+                TYPE: 'bullet'
+            }
+        }, 4)
+}
 
+Class.ascInceptioner = {
+    PARENT: 'genericTank',
+    LABEL: "Inceptioner",
+    SHAPE: 4,
+    DANGER: 7,
+    SIZE: 25,
+    BODY: {
+        HEALTH: 4 * base.HEALTH,
+        SPEED: 0.5 * base.SPEED,
+    },
+    TURRETS: weaponArray({
+            TYPE: 'decoAutoTankGun',
+            POSITION: {
+                SIZE: 5,
+                X: 14,
+                LAYER: -10,
+                ANGLE: 180
+            }
+        }, 4),
+    GUNS: weaponArray({
+            POSITION: {
+                LENGTH: 14.25,
+                WIDTH: 9,
+                ANGLE: 0
+            },
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.basic, g.pounder, g.destroyer, {reload: 1.05}]),
+                TYPE: 'inception'
+            }
+        }, 4),
+}
 
-
+Class.ascAuraFarmer = {
+    PARENT: 'genericTank',
+    LABEL: "Aura Farmer",
+    SHAPE: 4,
+    DANGER: 7,
+    SIZE: 25,
+    BODY: {
+        HEALTH: 4 * base.HEALTH,
+        SPEED: 0.5 * base.SPEED,
+    },
+    TURRETS: weaponArray({
+            TYPE: 'decoAutoTankGun',
+            POSITION: {
+                SIZE: 5,
+                X: 14,
+                LAYER: -10,
+                ANGLE: 180
+            }
+        }, 4),
+    GUNS: weaponArray({
+            POSITION: {
+                LENGTH: 14.25,
+                WIDTH: 9,
+                ANGLE: 0
+            },
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.basic, g.pounder, g.destroyer, {reload: 1.05}]),
+                TYPE: 'auraBullet'
+            }
+        }, 4),
+}

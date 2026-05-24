@@ -26,7 +26,42 @@ module.exports = {
             id: 'la', // (<host>/#<id>)
 
             region: "Heck", // The region the server is on.
-            gamemode: ['tdm', 'maze', 'outbreak'], // The selected gamemode.
+            gamemode: ['tdm', 'outbreak'], // The selected gamemode.
+            player_cap: 80, // Not including bots. Set to 0 to disable.
+
+            featured: true, // Whether the server is featured or not.
+            unlisted: false, // Whether the server shows up in the server list (if its id isn't in the url).
+            private: false, // Whether the server requires a privileged token to join (except through server travel).
+
+            properties: { // This overrides settings in the config.js file, assuming the selected gamemode doesn't also override it.
+                bot_cap: 30,
+                server_travel_properties: {
+                loop_interval: 10000, // how often the portal loop executes in seconds
+                portals: 1, // amount of portals to spawn
+},              allow_server_travel: true,
+                server_travel: [
+                    {
+                        ip: 'upgraded-disco-jjxjjpvrgqr72pwwx-3002.app.github.dev', // destination server host, don't add "https://" or any slashes to it
+                        portal_properties: {
+                            spawn_chance: 3, // chance for a portal to spawn somewhere in the map each loop iteration (higher = lower chances, lower = higher chance)
+                            color: 'red', // portal color
+                        }
+                    }
+]
+
+            }
+        },
+        {
+            share_client_server: false, // Only one server at a time can have this enabled.
+            // The above is required if your VM (the machine that hosts the website stuff) doesn't support multi-ports and forces everything through the main server.
+            // This also overrides the below host and port settings to be identical to the main server's host/port (by default, 3000).
+
+            host: 'upgraded-disco-jjxjjpvrgqr72pwwx-3002.app.github.dev', // Server host location.
+            port: 3002, // The port on the server.
+            id: 'zz', // (<host>/#<id>)
+
+            region: "Heck", // The region the server is on.
+            gamemode: ['ffa', 'maze'], // The selected gamemode.
             player_cap: 80, // Not including bots. Set to 0 to disable.
 
             featured: false, // Whether the server is featured or not.
@@ -34,7 +69,8 @@ module.exports = {
             private: true, // Whether the server requires a privileged token to join (except through server travel).
 
             properties: { // This overrides settings in the config.js file, assuming the selected gamemode doesn't also override it.
-                bot_cap: 30,
+                bot_cap: 0,
+                allow_server_travel: true
             }
         },
     ],

@@ -68,7 +68,12 @@ Class.developer = {
         'ascTransmitter',
         'ascSQUAM',
         'ascArtificier',
-        'ascCastler'
+        'ascCastler',
+        'ascTesla',
+        'ascDestroyer',
+        'ascInceptioner',
+        'ascAuraFarmer',
+        'ascSqultramega',
     ]
 }
 

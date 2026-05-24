@@ -14,6 +14,14 @@ Class.autoTankGun = makeTurret({
         },
     ],
 }, {canRepel: true, limitFov: true, fov: 3})
+Class.decoAutoTankGun = makeTurret({
+    CONTROLLERS: [],
+    GUNS: [
+        {
+            POSITION: [22, 10, 1, 0, 0, 0, 0],
+        },
+    ],
+}, {canRepel: true, limitFov: true, fov: 0})
 Class.bigAutoTankGun = makeTurret({
     GUNS: [
         {
