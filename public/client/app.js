@@ -2528,7 +2528,7 @@ import * as socketStuff from "./socketinit.js";
                         }
                     }
                 }
-                ctx[1].globalAlpha = 1;
+                ctx[1].globalAlpha = 0.6;
                 ctx[1].fillStyle = global.advanced.blackout.color;
                 ctx[1].globalCompositeOperation = "destination-in";
                 ctx[1].fill();

@@ -74,6 +74,14 @@ Class.developer = {
         'ascInceptioner',
         'ascAuraFarmer',
         'ascSqultramega',
+        'ascMarker',
+        'ascPolluter',
+        'ascAnni',
+        'ascMegaAnni',
+        'ascPen',
+        'ascPenneter',
+        'ascAlloy',
+        'ascMetafactory'
     ]
 }
 

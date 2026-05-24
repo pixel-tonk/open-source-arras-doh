@@ -29,7 +29,8 @@ module.exports = {
         shudder: 0.1,
         size: 0.6,
         speed: 1.5,
-        spray: 0.1
+        spray: 0.1,
+        damage: 0.9
     },
     swarm: {
         reload: 23,
@@ -55,7 +56,7 @@ module.exports = {
         damage: 0.75,
         speed: 3.25,
         resist: 3,
-        spray: 0
+        spray: 0.0001
     },
 
     // Spammers

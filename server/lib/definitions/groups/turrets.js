@@ -1,4 +1,4 @@
-const {combineStats, makeAuto, makeTurret, weaponArray, weaponMirror} = require('../facilitators.js')
+const {combineStats, makeAuto, makeTurret, weaponArray, weaponMirror, makeAura} = require('../facilitators.js')
 const {base} = require('../constants.js')
 const g = require('../gunvals.js')
 
@@ -21,6 +21,15 @@ Class.decoAutoTankGun = makeTurret({
             POSITION: [22, 10, 1, 0, 0, 0, 0],
         },
     ],
+}, {canRepel: true, limitFov: true, fov: 0})
+Class.decoAutoTankGunAura = makeTurret({
+    CONTROLLERS: [],
+    GUNS: [
+        {
+            POSITION: [0, 10, 1, 0, 0, 0, 0],
+        },
+    ],
+    TURRETS: makeAura(0, 2)
 }, {canRepel: true, limitFov: true, fov: 0})
 Class.bigAutoTankGun = makeTurret({
     GUNS: [
@@ -858,6 +867,19 @@ Class.pillboxTurret = makeTurret({
             POSITION: [22, 11, 1, 0, 0, 0, 0],
             PROPERTIES: {
                 SHOOT_SETTINGS: combineStats([g.basic, g.minionGun, g.turret, g.power, g.autoTurret, { density: 0.1, speed: 0.5, range: 1.5 }]),
+                TYPE: "bullet",
+                WAIT_TO_CYCLE: true
+            },
+        },
+    ],
+}, {independent: true, extraStats: []})
+Class.incepTurret = makeTurret({
+    HAS_NO_RECOIL: true,
+    GUNS: [
+        {
+            POSITION: [22, 11, 1, 0, 0, 0, 0],
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.basic, g.turret, g.power, g.autoTurret, { density: 0.1, speed: 0.5, range: 1.5 }]),
                 TYPE: "bullet",
                 WAIT_TO_CYCLE: true
             },

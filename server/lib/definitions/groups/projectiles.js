@@ -1,4 +1,4 @@
-const {combineStats, weaponArray, weaponMirror, makeAura} = require('../facilitators.js')
+const {combineStats, weaponArray, weaponMirror, makeAura, makeAuto} = require('../facilitators.js')
 const g = require('../gunvals.js')
 
 // Bullets
@@ -675,6 +675,7 @@ Class.genericMinion = {
 }
 Class.minion = {
     PARENT: 'genericMinion',
+
     GUNS: [
         {
             POSITION: {
@@ -690,6 +691,42 @@ Class.minion = {
     ]
 }
 Class.minionAsc = {PARENT: "minion", SHAPE: 4}
+Class.metafactoryMinion = {
+    PARENT: 'genericMinion',
+    LABEL: 'Producer',
+    SHAPE: 4,
+    GUNS: [
+            {
+                POSITION: {
+                    LENGTH: 4.5,
+                    WIDTH: 10,
+                    X: 10.5
+                }
+            },
+            {
+                POSITION: {
+                    LENGTH: 1,
+                    WIDTH: 12,
+                    X: 15
+                },
+                PROPERTIES: {
+                    MAX_CHILDREN: 3,
+                    SHOOT_SETTINGS: combineStats([g.minion, g.spawner]),
+                    TYPE: 'minionAsc',
+                    STAT_CALCULATOR: 'drone',
+                    AUTOFIRE: true,
+                    SYNCS_SKILLS: true,
+                },
+            },
+            {
+                POSITION: {
+                    LENGTH: 11.5,
+                    WIDTH: 12
+                }
+            }
+        ]
+}
+Class.metafactoryMinion = makeAuto('metafactoryMinion')
 Class.tinyMinion = {
     PARENT: "minion",
     LABEL: "Swarm Minion",
@@ -1167,11 +1204,11 @@ Class.inception = {
     TURRETS: [
         {
             POSITION: [9, 0, 0, 0, 360, 1],
-            TYPE: ["pillboxTurret", {LABEL: "Inception Bullet Turret", GUN_STAT_SCALE: {health: 2.8, pen: 1.8, damage: 3.8}}]
+            TYPE: ["incepTurret"]
         },
     ],
 }
-Class.auraBulletAura = makeAura(1, 2)
+Class.auraBulletAura = makeAura(2, 2)
 Class.auraBullet = {
     PARENT: "bullet",
     LABEL: "Aurora",

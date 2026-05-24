@@ -6253,6 +6253,7 @@ Class.ascFactory = {
     SHAPE: 4,
     DANGER: 7,
     SIZE: 25,
+    MAX_CHILDREN: 8,
     BODY: {
         HEALTH: 4 * base.HEALTH,
         SPEED: 0.65 * base.SPEED,
@@ -6273,7 +6274,6 @@ Class.ascFactory = {
                 X: 12.5
             },
             PROPERTIES: {
-                MAX_CHILDREN: 3,
                 SHOOT_SETTINGS: combineStats([g.minion, g.spawner, {reload: 1.3, health: 2, damage: 0.25}]),
                 TYPE: 'minionAsc',
                 STAT_CALCULATOR: 'drone',
@@ -6289,7 +6289,49 @@ Class.ascFactory = {
         }
     ], 4)
 }
-
+Class.ascMetafactory = {
+    PARENT: 'genericTank',
+    LABEL: "Metafactory",
+    SHAPE: 4,
+    DANGER: 7,
+    SIZE: 25,
+    MAX_CHILDREN: 4,
+    BODY: {
+        HEALTH: 4 * base.HEALTH,
+        SPEED: 0.65 * base.SPEED,
+        FOV: 1.2 * base.FOV
+    },
+    GUNS: weaponArray([
+        {
+            POSITION: {
+                LENGTH: 3,
+                WIDTH: 10.5,
+                X: 8.5
+            }
+        },
+        {
+            POSITION: {
+                LENGTH: 1,
+                WIDTH: 12,
+                X: 12.5
+            },
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.minion, g.spawner, {reload: 2.5, health: 6, damage: 0.35, maxSpeed: 0.5}]),
+                TYPE: 'metafactoryMinion',
+                WAIT_TO_CYCLE: true,
+                STAT_CALCULATOR: 'drone',
+                AUTOFIRE: true,
+                SYNCS_SKILLS: true,
+            },
+        },
+        {
+            POSITION: {
+                LENGTH: 8.5,
+                WIDTH: 12
+            }
+        }
+    ], 4)
+}
 Class.ascSniper = {
     PARENT: 'genericTank',
     LABEL: "Sharpshooter",
@@ -6316,11 +6358,11 @@ Class.ascSniper = {
 
 Class.ascOverlord = {
     PARENT: 'genericTank',
-    LABEL: "Commander",
+    LABEL: "CEO",
     SHAPE: 4,
     DANGER: 7,
     SIZE: 25,
-    MAX_CHILDREN: 12,
+    MAX_CHILDREN: 7,
     BODY: {
         HEALTH: 4 * base.HEALTH,
         SPEED: 0.65 * base.SPEED,
@@ -6605,6 +6647,47 @@ Class.ascSqultramega = {
         },
     ],
 }
+
+Class.ascMarker = {
+    PARENT: 'genericTank',
+    LABEL: "Marker",
+    SHAPE: 4,
+    DANGER: 7,
+    SIZE: 25,
+    BODY: {
+        HEALTH: 4 * base.HEALTH,
+        SPEED: 0.65 * base.SPEED,
+    },
+    GUNS: [{
+            POSITION: {
+                LENGTH: 18.25,
+                WIDTH: 7,
+                ANGLE: 0
+            },
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.basic, g.pounder, {reload: 2}]),
+                TYPE: 'bullet'
+            }
+        },{
+            POSITION: {
+                LENGTH: 14,
+                WIDTH: 17.8
+            },
+        },
+        {
+            POSITION: {
+                LENGTH: 1.5,
+                WIDTH: 22.5,
+                ASPECT: 1.1,
+                X: 14
+            },
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.trap, g.setTrap, {reload: 7, damage: 0.74, health: 10}]),
+                TYPE: 'unsetTrap',
+                STAT_CALCULATOR: 'block'
+            }
+        }
+]}
 Class.ascArtificier = {
     PARENT: 'genericTank',
     LABEL: "Artificier",
@@ -6716,13 +6799,43 @@ Class.ascCastler = {
                 X: 12
             },
             PROPERTIES: {
-                SHOOT_SETTINGS: combineStats([g.trap, g.setTrap, {reload: 0.57, damage: 0.75, health: 0.65, spread: 100, size: 0.5}]),
+                SHOOT_SETTINGS: combineStats([g.trap, g.setTrap, {reload: 0.57, damage: 0.75, health: 0.65, spread: 100, size: 0.5, range: 0.5}]),
                 TYPE: ['unsetTrap'],
                 STAT_CALCULATOR: 'block'
             }
         }], 4)
 }
-
+Class.ascPolluter = {
+    PARENT: 'genericTank',
+    LABEL: "Polluter",
+    SHAPE: 4,
+    DANGER: 7,
+    SIZE: 25,
+    BODY: {
+        HEALTH: 4 * base.HEALTH,
+        SPEED: 0.65 * base.SPEED,
+    },
+    GUNS: weaponArray([{
+            POSITION: {
+                LENGTH: 12,
+                WIDTH: 8,
+                ASPECT: 2
+            },
+        },
+        {
+            POSITION: {
+                LENGTH: 1.5,
+                WIDTH: 16,
+                ASPECT: 1.2,
+                X: 12
+            },
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.trap, g.setTrap, {reload: 0.24, damage: 0.25, health: 0.15, spread: 1000000000, size: 0.25, range: 0.5}]),
+                TYPE: ['unsetTrap'],
+                STAT_CALCULATOR: 'block'
+            }
+        }], 4)
+}
 Class.ascTesla = {
     PARENT: 'genericTank',
     LABEL: "Tesla",
@@ -6780,7 +6893,72 @@ Class.ascDestroyer = {
             }
         }, 4)
 }
-
+Class.ascAlloy = {
+    PARENT: 'genericTank',
+    LABEL: "Alloy",
+    SHAPE: 4,
+    DANGER: 7,
+    SIZE: 25,
+    BODY: {
+        HEALTH: 4 * base.HEALTH,
+        SPEED: 0.5 * base.SPEED,
+    },
+    GUNS: [{
+            POSITION: {
+                LENGTH: 14.25,
+                WIDTH: 9,
+                ANGLE: 0
+            },
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.basic, g.pounder, g.destroyer, {reload: 0.9}]),
+                TYPE: 'bullet'
+            }
+        },{
+            POSITION: {
+                LENGTH: 14.25,
+                WIDTH: 9,
+                ANGLE: 180
+            },
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.basic, g.pounder, g.destroyer, {reload: 0.9}]),
+                TYPE: 'bullet'
+            }
+        },{
+        POSITION: {
+            LENGTH: 4.5,
+            WIDTH: 7,
+            ASPECT: 1.6,
+            ANGLE: 90,
+            X: 8
+        },
+        PROPERTIES: {
+            SHOOT_SETTINGS: combineStats([g.drone, g.overseer, {damage: 0.9, speed: 0.9, health: 0.9}]),
+            TYPE: 'drone',
+            AUTOFIRE: true,
+            SYNCS_SKILLS: true,
+            STAT_CALCULATOR: 'drone',
+            WAIT_TO_CYCLE: true,
+            MAX_CHILDREN: 2
+        }
+    },{
+        POSITION: {
+            LENGTH: 4.5,
+            WIDTH: 7,
+            ASPECT: 1.6,
+            ANGLE: -90,
+            X: 8
+        },
+        PROPERTIES: {
+            SHOOT_SETTINGS: combineStats([g.drone, g.overseer, {damage: 0.9, speed: 0.9, health: 0.9}]),
+            TYPE: 'drone',
+            AUTOFIRE: true,
+            SYNCS_SKILLS: true,
+            STAT_CALCULATOR: 'drone',
+            WAIT_TO_CYCLE: true,
+            MAX_CHILDREN: 2
+        }
+    }]
+}
 Class.ascInceptioner = {
     PARENT: 'genericTank',
     LABEL: "Inceptioner",
@@ -6807,7 +6985,7 @@ Class.ascInceptioner = {
                 ANGLE: 0
             },
             PROPERTIES: {
-                SHOOT_SETTINGS: combineStats([g.basic, g.pounder, g.destroyer, {reload: 1.05}]),
+                SHOOT_SETTINGS: combineStats([g.basic, g.pounder, g.destroyer, {reload: 1.05, range: 1.3}]),
                 TYPE: 'inception'
             }
         }, 4),
@@ -6824,7 +7002,7 @@ Class.ascAuraFarmer = {
         SPEED: 0.5 * base.SPEED,
     },
     TURRETS: weaponArray({
-            TYPE: 'decoAutoTankGun',
+            TYPE: 'decoAutoTankGunAura',
             POSITION: {
                 SIZE: 5,
                 X: 14,
@@ -6839,8 +7017,163 @@ Class.ascAuraFarmer = {
                 ANGLE: 0
             },
             PROPERTIES: {
-                SHOOT_SETTINGS: combineStats([g.basic, g.pounder, g.destroyer, {reload: 1.05}]),
+                SHOOT_SETTINGS: combineStats([g.basic, g.pounder, g.destroyer, {reload: 1.05, range: 1.3}]),
                 TYPE: 'auraBullet'
             }
         }, 4),
 }
+
+Class.ascAnni = {
+    PARENT: 'genericTank',
+    LABEL: "Demolisher",
+    SHAPE: 4,
+    DANGER: 7,
+    SIZE: 25,
+    BODY: {
+        HEALTH: 4 * base.HEALTH,
+        SPEED: 0.5 * base.SPEED,
+    },
+    GUNS: weaponArray({
+            POSITION: {
+                LENGTH: 13.25,
+                WIDTH: 19.5/2+0.7,
+                ANGLE: 0
+            },
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.basic, g.pounder, g.destroyer, g.annihilator, {reload: 1.08, speed: 1.1}]),
+                TYPE: 'bullet'
+            }
+        }, 4)
+}
+
+Class.ascMegaAnni = {
+    PARENT: 'genericTank',
+    LABEL: "Demoman",
+    SHAPE: 4,
+    DANGER: 7,
+    SIZE: 25,
+    BODY: {
+        HEALTH: 4 * base.HEALTH,
+        SPEED: 0.5 * base.SPEED,
+    },
+    GUNS: weaponArray({
+            POSITION: {
+                LENGTH: 12.25,
+                WIDTH: 18,
+                ANGLE: 0
+            },
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.basic, g.pounder, g.destroyer, g.annihilator, {reload: 2.38, speed: 0.9, damage: 1.4, health: 1.4}]),
+                TYPE: 'bullet'
+            }
+        }, 4)
+}
+
+Class.ascPen = {
+    PARENT: 'genericTank',
+    LABEL: "Pencil",
+    SHAPE: 4,
+    DANGER: 7,
+    SIZE: 25,
+    BODY: {
+        HEALTH: 4 * base.HEALTH,
+        SPEED: 0.65 * base.SPEED,
+    },
+    GUNS: weaponArray([{
+            POSITION: {
+                LENGTH: 17.25,
+                WIDTH: 7,
+                ANGLE: 0
+            },
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.basic, g.pounder, {reload: 2, damage: 0.8}]),
+                TYPE: 'bullet'
+            }
+        },{
+            POSITION: {
+                LENGTH: 14,
+                WIDTH: 8
+            },
+        },
+        {
+            POSITION: {
+                LENGTH: 1.5,
+                WIDTH: 8,
+                ASPECT: 1.1,
+                X: 14
+            },
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.trap, g.setTrap, {reload: 1.2, damage: 0.75, health: 0.75, range: 0.5}]),
+                TYPE: 'unsetTrap',
+                STAT_CALCULATOR: 'block'
+            }
+        },], 4)
+}
+
+Class.ascPenneter = {
+    PARENT: 'genericTank',
+    LABEL: "Penneter",
+    SHAPE: 4,
+    DANGER: 7,
+    SIZE: 25,
+    BODY: {
+        HEALTH: 4 * base.HEALTH,
+        SPEED: 0.65 * base.SPEED,
+    },
+    GUNS: weaponArray([{
+            POSITION: {
+                LENGTH: 17.25,
+                WIDTH: 3.5,
+                ANGLE: 0,
+                Y: -1.75
+            },
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.basic, g.pounder, {reload: 1.7, damage: 0.6, health: 0.6}]),
+                TYPE: 'bullet'
+            }
+        },{
+            POSITION: {
+                LENGTH: 17.25,
+                WIDTH: 3.5,
+                ANGLE: 0,
+                Y: 1.75,
+                DELAY: 0.5
+            },
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.basic, g.pounder, {reload: 1.7, damage: 0.6, health: 0.6}]),
+                TYPE: 'bullet'
+            }
+        },{
+            POSITION: {
+                LENGTH: 14,
+                WIDTH: 8
+            },
+        },
+        {
+            POSITION: {
+                LENGTH: 1.5,
+                WIDTH: 8,
+                ASPECT: 1.1,
+                X: 14
+            },
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.trap, g.setTrap, {reload: 1.2, damage: 0.75, health: 0.75, range: 0.5}]),
+                TYPE: 'unsetTrap',
+                STAT_CALCULATOR: 'block'
+            }
+        },], 4)
+}
+
+
+//T0: LVL 105, T1: LVL 120 8
+
+
+Class.asc.UPGRADES_TIER_8 = ['ascTrapper', 'ascMachine', 'ascArtillery', 'ascDestroyer', 'ascOverlord']
+    Class.ascDestroyer.UPGRADES_TIER_9 = ['ascAnni', 'ascInceptioner', 'ascAlloy']
+        Class.ascAnni.UPGRADES_TIER_10 = ['ascMegaAnni']
+        Class.ascInceptioner.UPGRADES_TIER_10 = ['ascAuraFarmer']
+        Class.ascAlloy.UPGRADES_TIER_10 = []
+    Class.ascTrapper.UPGRADES_TIER_9 = ['ascSQUAM', 'ascCastler', 'ascPen', /*'ascEngineer'*/]
+        Class.ascSQUAM.UPGRADES_TIER_10 = ['ascSqultramega', 'ascMarker']
+        Class.ascCastler.UPGRADES_TIER_10 = ['ascPolluter']
+        Class.ascPen.UPGRADES_TIER_10 = ['ascPenneter', 'ascMarker']

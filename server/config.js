@@ -26,7 +26,7 @@ module.exports = {
             id: 'la', // (<host>/#<id>)
 
             region: "Heck", // The region the server is on.
-            gamemode: ['tdm', 'outbreak'], // The selected gamemode.
+            gamemode: ['tdm'], // The selected gamemode.
             player_cap: 80, // Not including bots. Set to 0 to disable.
 
             featured: true, // Whether the server is featured or not.
@@ -61,7 +61,7 @@ module.exports = {
             id: 'zz', // (<host>/#<id>)
 
             region: "Heck", // The region the server is on.
-            gamemode: ['ffa', 'maze'], // The selected gamemode.
+            gamemode: ['ffa', 'maze', 'blackout'], // The selected gamemode.
             player_cap: 80, // Not including bots. Set to 0 to disable.
 
             featured: false, // Whether the server is featured or not.
@@ -70,7 +70,7 @@ module.exports = {
 
             properties: { // This overrides settings in the config.js file, assuming the selected gamemode doesn't also override it.
                 bot_cap: 0,
-                allow_server_travel: true
+                allow_server_travel: true,
             }
         },
     ],

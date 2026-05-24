@@ -266,7 +266,7 @@ const global = {
         roundMap: false,
         blackout: {
             active: false,
-            color: "#000000"
+            color: "#00000009"
         },
     },
     bandwidth: {
